@@ -1,1 +1,6 @@
-{"population_quantity":10000, "reproduce_possibility": 1, "mutate_possibility": 0.1, "stop_generation": 15}
+{
+  "population_quantity": 100,
+  "reproduce_possibility": 1,
+  "mutate_possibility": 0.01,
+  "stop_generation": 4000
+}

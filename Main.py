@@ -53,7 +53,7 @@ for generation in range(0, stop):  # reproduce and mutate for several generation
     possibilities = []
     for f in fitness:  # calculate possibility using
         possibilities.append(f / sum(fitness))
-    population = list(np.random.choice(population, quantity, possibilities))  # a new population
+    population = list(np.random.choice(population, quantity, False, possibilities))  # a new population
 
     # step2: reproduce
     for pair in list(zip(*([iter(population)] * 2))):
@@ -63,10 +63,6 @@ for generation in range(0, stop):  # reproduce and mutate for several generation
             pair[0].calculate()
             pair[1].cities[pos:] = [x for x in pair[0].cities if x not in pair[1].cities[:pos]]
             pair[1].calculate()
-    for result in population:  # update best solution
-        if result.distance < minimum:
-            solution.copy(result)
-            minimum = result.distance
 
     # step3: mutate
     for res in population:
@@ -76,5 +72,8 @@ for generation in range(0, stop):  # reproduce and mutate for several generation
         if result.distance < minimum:
             solution.copy(result)
             minimum = result.distance
+    #print("final ")
+    if generation % 100 == 0:
+        print(solution.print())
 
 open(out_file, 'w').write(solution.print())

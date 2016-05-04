@@ -38,8 +38,9 @@ class Result:
         if start <= end:
             self.cities[start: end] = self.cities[start: end][::-1]
         else:
-            copy = self.cities[start:] + self.cities[:end]
-            copy = copy[::-1]
-            self.cities[start:] = copy[:len(self.cities) - start]
-            self.cities[:end] = copy[len(self.cities) - start:]
+            self.cities[end: start] = self.cities[end: start][::-1]
+            # copy = self.cities[start:] + self.cities[:end]
+            # copy = copy[::-1]
+            # self.cities[start:] = copy[:len(self.cities) - start]
+            # self.cities[:end] = copy[len(self.cities) - start:]
         self.calculate()
